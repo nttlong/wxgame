@@ -1,0 +1,70 @@
+# ==============================================================================
+# UNITY (Tệp dự án và Thư viện)
+# ==============================================================================
+
+# Thư mục Library (chứa dữ liệu tạm thời, không nên commit)
+[Ll]ibrary/
+
+# Thư mục Temp (chứa dữ liệu biên dịch tạm thời)
+[Tt]emp/
+
+# Thư mục Build (chứa bản build game đã xuất ra)
+[Bb]uilds/
+
+# Thư mục obj (chứa các file trung gian)
+[Oo]bj/
+
+# Các thư mục dành cho Packages (Nên được thêm vào thông qua Manifest.json)
+[Pp]ackages/
+
+# Thư mục ghi nhật ký lỗi (Logs)
+[Ll]ogs/
+
+# Cache của các gói tải xuống
+[Pp]ackage[Cc]ache/
+
+# Thư mục kết quả kiểm thử
+[Tt]est[Rr]esults/
+
+# ==============================================================================
+# Cấu hình Cục Bộ Của Unity
+# ==============================================================================
+
+# Các file cấu hình người dùng (không cần chia sẻ)
+[Pp]roject[Ss]ettings/UserSettings.asset
+
+# Các file Assetstore cục bộ
+[Aa]ssets/[Aa]sset[Ss]tore[Tt]ools/
+
+# ==============================================================================
+# File Cấu Hình IDE (Visual Studio / JetBrains Rider)
+# ==============================================================================
+
+# Các file cấu hình giải pháp và dự án (được Unity tự động tạo lại)
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+
+# Cấu hình Visual Studio Code
+.vscode/
+
+# Cấu hình JetBrains Rider
+.idea/
+
+# Thư mục VS/VSCode/Rider tạm thời
+[Bb]in/
+[Dd]ata/
+
+# ==============================================================================
+# MAC OS & LINUX (Nếu bạn làm việc trên các hệ điều hành này)
+# ==============================================================================
+
+.DS_Store
+.TemporaryItems
+Thumbs.db
