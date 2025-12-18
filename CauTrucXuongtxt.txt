@@ -1,0 +1,10 @@
+1. Cấu trúc xương cho nhân vật kiểu "Detention"
+Nhân vật kiểu này thường tập trung vào góc nhìn ngang. Bạn nên nối xương theo hệ thống "Cây" xuất phát từ hông:
+
+Xương gốc (Root): Đặt tại Hông (Pelvis).
+
+Nhánh lên: Hông -> Bụng -> Ngực -> Cổ -> Đầu.
+
+Nhánh tay: Từ Ngực nối ra 2 vai -> Bắp tay -> Cẳng tay.
+
+Nhánh chân: Từ Hông nối xuống 2 Đùi -> Cẳng chân -> Bàn chân.
