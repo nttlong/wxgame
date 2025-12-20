@@ -1,18 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private Animator animator;
+
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
+        animator.SetFloat("Speed", 0f); // đảm bảo Idle khi bắt đầu
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        bool mouseHold = Input.GetMouseButton(0);
+        bool isShift = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+
+        if (mouseHold)
+        {
+            if (isShift)
+            {
+                animator.SetFloat("Speed", 2.0f); // Run
+            }
+            else
+            {
+                animator.SetFloat("Speed", 1.0f); // Walk
+            }
+        }
+        else
+        {
+            animator.SetFloat("Speed", 0f); // Idle
+        }
     }
 }
