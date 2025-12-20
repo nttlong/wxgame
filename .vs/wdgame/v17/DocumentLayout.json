@@ -3,7 +3,7 @@
   "WorkspaceRootPath": "E:\\unitty-data\\wdgame\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{ADE2638F-3718-3061-C484-6A37A2FFA207}|Assembly-CSharp.csproj|E:\\unitty-data\\wdgame\\assets\\art\\charates\\main\\script\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{ADE2638F-3718-3061-C484-6A37A2FFA207}|Assembly-CSharp.csproj|e:\\unitty-data\\wdgame\\assets\\art\\charates\\main\\script\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ADE2638F-3718-3061-C484-6A37A2FFA207}|Assembly-CSharp.csproj|solutionrelative:assets\\art\\charates\\main\\script\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -83,7 +83,7 @@
               "RelativeDocumentMoniker": "Assets\\Art\\charates\\main\\script\\PlayerController.cs",
               "ToolTip": "E:\\unitty-data\\wdgame\\Assets\\Art\\charates\\main\\script\\PlayerController.cs",
               "RelativeToolTip": "Assets\\Art\\charates\\main\\script\\PlayerController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAADwAAAAAAAAAAAAowEUAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-20T06:22:17.383Z",
               "EditorCaption": ""
