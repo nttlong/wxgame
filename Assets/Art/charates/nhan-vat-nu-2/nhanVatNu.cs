@@ -19,9 +19,15 @@ public class nhanVatNu : MonoBehaviour
     public float runInterval = 2f;
 
     [Header("Footstep Settings")]
+
+
+
     public AudioSource footstepAudio;
     public float stepInterval = 0.5f; // Thời gian giữa các bước
     private float nextStepTime;
+    [Header("Stop threshold")]
+
+    float stopThreshold = 0.05f;
 
     [Header("Foot Sliding Fix")]
     public float acceleration = 15f;
@@ -43,8 +49,91 @@ public class nhanVatNu : MonoBehaviour
         // Đảm bảo AudioSource đã được gán
         if (footstepAudio == null) footstepAudio = GetComponent<AudioSource>();
     }
-
     void Update()
+    {
+        // 1. Logic dừng lại khi không nhấn chuột
+        if (!Input.GetMouseButton(0))
+        {
+            moveVelocity = Mathf.Lerp(moveVelocity, 0, Time.deltaTime * acceleration);
+            if (animator != null) animator.SetFloat("Speed", idleAnim);
+
+            nextStepTime = Time.time + stepInterval;
+            return;
+        }
+
+        // 2. Logic di chuyển theo chuột
+        Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouse.z = 0;
+
+        float distance = mouse.x - transform.position.x;
+
+        // -------------------------------
+        // ⭐ DỪNG LẠI KHI GẦN TỚI VỊ TRÍ CHUỘT
+        // -------------------------------
+       
+
+        if (Mathf.Abs(distance) < stopThreshold)
+        {
+            moveVelocity = Mathf.Lerp(moveVelocity, 0, Time.deltaTime * acceleration);
+
+            if (animator != null) animator.SetFloat("Speed", idleAnim);
+
+            // Reset sound timer để không phát âm thanh
+            nextStepTime = Time.time + stepInterval;
+
+            return; // QUAN TRỌNG
+        }
+        // -------------------------------
+
+        float targetDir = Mathf.Sign(distance);
+        moveDir = Mathf.Lerp(moveDir, targetDir, Time.deltaTime * directionSmooth);
+
+        // 3. Chọn chế độ và tốc độ
+        bool run = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+        bool slow = Input.GetKey(KeyCode.LeftControl);
+
+        float targetSpeed;
+        float animValue;
+        float currentStepInterval;
+
+        if (slow)
+        {
+            targetSpeed = slowWalkSpeed;
+            animValue = slowWalkAnim;
+            currentStepInterval = slowInterval;
+        }
+        else if (run)
+        {
+            targetSpeed = runSpeed;
+            animValue = runAnim;
+            currentStepInterval = runInterval;
+        }
+        else
+        {
+            targetSpeed = walkSpeed;
+            animValue = walkAnim;
+            currentStepInterval = walkInterval;
+        }
+
+        // 4. Footstep (bạn có thể mở lại nếu muốn)
+        // if (Time.time >= nextStepTime)
+        // {
+        //     PlayFootstep();
+        //     nextStepTime = Time.time + currentStepInterval;
+        // }
+
+        // 5. Apply movement
+        if (animator != null) animator.SetFloat("Speed", animValue);
+
+        moveVelocity = Mathf.Lerp(moveVelocity, targetSpeed, Time.deltaTime * acceleration);
+
+        transform.position += new Vector3(moveDir * moveVelocity * Time.deltaTime, 0, 0);
+
+        if (visual != null)
+            visual.localScale = new Vector3(moveDir > 0 ? 1 : -1, 1, 1);
+    }
+
+    void UpdateOld()
     {
         // 1. Logic dừng lại khi không nhấn chuột
         //if (!Input.GetMouseButton(0))
