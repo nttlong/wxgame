@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "E:\\unitty-data\\wdgame\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{ADE2638F-3718-3061-C484-6A37A2FFA207}|Assembly-CSharp.csproj|e:\\unitty-data\\wdgame\\assets\\scripts\\inventoryuicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ADE2638F-3718-3061-C484-6A37A2FFA207}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\inventoryuicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ADE2638F-3718-3061-C484-6A37A2FFA207}|Assembly-CSharp.csproj|e:\\unitty-data\\wdgame\\assets\\art\\objects\\inventoryitemui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ADE2638F-3718-3061-C484-6A37A2FFA207}|Assembly-CSharp.csproj|solutionrelative:assets\\art\\objects\\inventoryitemui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ADE2638F-3718-3061-C484-6A37A2FFA207}|Assembly-CSharp.csproj|E:\\unitty-data\\wdgame\\assets\\art\\objects\\cay-den\\lanternfollower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ADE2638F-3718-3061-C484-6A37A2FFA207}|Assembly-CSharp.csproj|solutionrelative:assets\\art\\objects\\cay-den\\lanternfollower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ADE2638F-3718-3061-C484-6A37A2FFA207}|Assembly-CSharp.csproj|e:\\unitty-data\\wdgame\\assets\\scripts\\inventoryuicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ADE2638F-3718-3061-C484-6A37A2FFA207}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\inventoryuicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{ADE2638F-3718-3061-C484-6A37A2FFA207}|Assembly-CSharp.csproj|E:\\unitty-data\\wdgame\\assets\\art\\charates\\nhan-vat-nu-2\\nhanvatnu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -99,27 +99,28 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "InventoryUIController.cs",
-              "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\Scripts\\InventoryUIController.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\InventoryUIController.cs",
-              "ToolTip": "E:\\unitty-data\\wdgame\\Assets\\Scripts\\InventoryUIController.cs",
-              "RelativeToolTip": "Assets\\Scripts\\InventoryUIController.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAuwDEAAAAAAAAAAAAAAA==",
+              "Title": "InventoryItemUI.cs",
+              "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\Art\\objects\\InventoryItemUI.cs",
+              "RelativeDocumentMoniker": "Assets\\Art\\objects\\InventoryItemUI.cs",
+              "ToolTip": "E:\\unitty-data\\wdgame\\Assets\\Art\\objects\\InventoryItemUI.cs",
+              "RelativeToolTip": "Assets\\Art\\objects\\InventoryItemUI.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-23T05:54:56.094Z",
+              "WhenOpened": "2025-12-23T11:21:21.402Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "LanternFollower.cs",
-              "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\Art\\objects\\Cay-den\\LanternFollower.cs",
-              "RelativeDocumentMoniker": "Assets\\Art\\objects\\Cay-den\\LanternFollower.cs",
-              "ToolTip": "E:\\unitty-data\\wdgame\\Assets\\Art\\objects\\Cay-den\\LanternFollower.cs",
-              "RelativeToolTip": "Assets\\Art\\objects\\Cay-den\\LanternFollower.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Title": "InventoryUIController.cs",
+              "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\Scripts\\InventoryUIController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\InventoryUIController.cs",
+              "ToolTip": "E:\\unitty-data\\wdgame\\Assets\\Scripts\\InventoryUIController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\InventoryUIController.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAIwBQAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-23T05:38:23.805Z"
+              "WhenOpened": "2025-12-23T05:54:56.094Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -143,7 +144,8 @@
               "RelativeToolTip": "Assets\\Scripts\\DoorController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-22T13:21:57.276Z"
+              "WhenOpened": "2025-12-22T13:21:57.276Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -153,9 +155,10 @@
               "RelativeDocumentMoniker": "Assets\\Art\\charates\\nhan-vat-nu-2\\nhanVatNu.cs",
               "ToolTip": "E:\\unitty-data\\wdgame\\Assets\\Art\\charates\\nhan-vat-nu-2\\nhanVatNu.cs",
               "RelativeToolTip": "Assets\\Art\\charates\\nhan-vat-nu-2\\nhanVatNu.cs",
-              "ViewState": "AgIAAIYAAAAAAAAAAAASwJwAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAIoAAAAAAAAAAAASwI8AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-21T13:50:41.308Z"
+              "WhenOpened": "2025-12-21T13:50:41.308Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",

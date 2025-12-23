@@ -46,7 +46,9 @@ public class nhanVatNu : MonoBehaviour
     private string currentAction = "idle";
     public bool isAutoMoving = false; //<-- player dk
     private float targetSpeed;
-
+    [Header("Tay nâng cao")]
+    public float layerWeight = 0;
+    public float speed = 0f;
     public float currentPosX
     {
         get
@@ -90,9 +92,14 @@ public class nhanVatNu : MonoBehaviour
     }
     void Update()
     {
-      
-        if (isAutoMoving) return;
+        if (GameInputState.InventoryOpen)
+        {
+            animator.SetFloat("Speed", 0); // đứng yên
+            return; // chặn toàn bộ input game
+        }
 
+        if (isAutoMoving) return;
+        animator.SetLayerWeight(1, this.layerWeight);
         // 1. Logic dừng lại khi không nhấn chuột
         if (!Input.GetMouseButton(0))
         {

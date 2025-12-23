@@ -1,10 +1,10 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class InventoryUIController : MonoBehaviour
 {
     public RectTransform inventoryPanel;
     public float slideTime = 0.25f;
-
+    public float TopPos = 1;
     private Vector2 showPos;
     private Vector2 hidePos;
     private bool isOpen = false;
@@ -15,10 +15,11 @@ public class InventoryUIController : MonoBehaviour
     {
         float h = inventoryPanel.rect.height;
 
-        showPos = new Vector2(0, 0);
-        hidePos = new Vector2(0, -h);
+        showPos = Vector2.zero;        // ← Sửa chỗ này
+        hidePos = new Vector2(0, -h);  // Ẩn xuống hoàn toàn
 
         inventoryPanel.anchoredPosition = hidePos;
+        
     }
 
     void Update()
@@ -31,7 +32,7 @@ public class InventoryUIController : MonoBehaviour
             t += Time.deltaTime / slideTime;
 
             if (isOpen)
-                inventoryPanel.anchoredPosition = Vector2.Lerp(hidePos, showPos, t);
+                inventoryPanel.anchoredPosition = Vector2.Lerp(hidePos, showPos, t); // InventoryPanel chỉ up lên 1/2 độ cao
             else
                 inventoryPanel.anchoredPosition = Vector2.Lerp(showPos, hidePos, t);
 
@@ -43,6 +44,8 @@ public class InventoryUIController : MonoBehaviour
     public void Toggle()
     {
         isOpen = !isOpen;
+        GameInputState.InventoryOpen = isOpen;
+
         sliding = true;
         t = 0;
     }
