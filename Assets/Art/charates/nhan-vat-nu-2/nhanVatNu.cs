@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class nhanVatNu : MonoBehaviour
 {
@@ -40,17 +41,23 @@ public class nhanVatNu : MonoBehaviour
     private float moveDir = 1f;
     private float lastPlayTime;
     public float minTimeBetweenSteps = 0.15f;
-
+    private string currentAction = "idle";
+    public bool isAutoMoving = false; //<-- player dk
+    private float targetSpeed;
     void Start()
     {
+        if (isAutoMoving) return; // <-- chỉ kiểm tra ở đây, trong khi hàm update kg có kiểm tra
         animator = GetComponentInChildren<Animator>();
         if (animator != null) visual = animator.transform;
 
         // Đảm bảo AudioSource đã được gán
         if (footstepAudio == null) footstepAudio = GetComponent<AudioSource>();
+        //animator.SetFloat("LookDirection", 1);
     }
     void Update()
     {
+      
+        if (isAutoMoving) return;
         // 1. Logic dừng lại khi không nhấn chuột
         if (!Input.GetMouseButton(0))
         {
@@ -92,7 +99,7 @@ public class nhanVatNu : MonoBehaviour
         bool run = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
         bool slow = Input.GetKey(KeyCode.LeftControl);
 
-        float targetSpeed;
+        
         float animValue;
         float currentStepInterval;
 
@@ -101,18 +108,21 @@ public class nhanVatNu : MonoBehaviour
             targetSpeed = slowWalkSpeed;
             animValue = slowWalkAnim;
             currentStepInterval = slowInterval;
+            currentAction = "walk-slow";
         }
         else if (run)
         {
             targetSpeed = runSpeed;
             animValue = runAnim;
             currentStepInterval = runInterval;
+            currentAction = "run";
         }
         else
         {
             targetSpeed = walkSpeed;
             animValue = walkAnim;
             currentStepInterval = walkInterval;
+            currentAction = "walk";
         }
 
         // 4. Footstep (bạn có thể mở lại nếu muốn)
@@ -133,113 +143,67 @@ public class nhanVatNu : MonoBehaviour
             visual.localScale = new Vector3(moveDir > 0 ? 1 : -1, 1, 1);
     }
 
-    void UpdateOld()
+   
+
+    void PlayFootstep(string action)
     {
-        // 1. Logic dừng lại khi không nhấn chuột
-        //if (!Input.GetMouseButton(0))
-        //{
-        //    moveVelocity = Mathf.Lerp(moveVelocity, 0, Time.deltaTime * acceleration);
-        //    if (animator != null) animator.SetFloat("Speed", idleAnim);
-        //    return;
-        //}
-        // 1. Logic dừng lại khi không nhấn chuột
-        if (!Input.GetMouseButton(0))
-        {
-            moveVelocity = Mathf.Lerp(moveVelocity, 0, Time.deltaTime * acceleration);
-            if (animator != null) animator.SetFloat("Speed", idleAnim);
-
-            // --- THÊM DÒNG NÀY ---
-            // Reset thời gian để khi bấm chuột lại, nó không phát âm thanh ngay lập tức
-            nextStepTime = Time.time + stepInterval;
-            // ---------------------
-
-            return;
-        }
-        // 2. Logic di chuyển theo chuột
-        Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mouse.z = 0;
-        float distance = mouse.x - transform.position.x;
-        float targetDir = Mathf.Sign(distance);
-        moveDir = Mathf.Lerp(moveDir, targetDir, Time.deltaTime * directionSmooth);
-
-        // 3. Chọn chế độ và Tốc độ phát âm thanh
-        bool run = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
-        bool slow = Input.GetKey(KeyCode.LeftControl);
-
-        float targetSpeed;
-        float animValue;
-        float currentStepInterval = stepInterval; // Mặc định
-
-        if (slow)
-        {
-            targetSpeed = slowWalkSpeed;
-            animValue = slowWalkAnim;
-            currentStepInterval = slowInterval; // Đi chậm thì tiếng bước chân thưa ra
-        }
-        else if (run)
-        {
-            targetSpeed = runSpeed;
-            animValue = runAnim;
-            currentStepInterval =runInterval; // Chạy thì tiếng bước chân dồn dập hơn
-        }
-        else
-        {
-            targetSpeed = walkSpeed;
-            animValue = walkAnim;
-            currentStepInterval = walkInterval;
-        }
-
-        // 4. Phát âm thanh bước chân
-        //if (Time.time >= nextStepTime)
-        //{
-        //    PlayFootstep();
-        //    nextStepTime = Time.time + currentStepInterval;
-        //}
-
-        // 5. Áp dụng di chuyển và Animation
-        if (animator != null) animator.SetFloat("Speed", animValue);
-        moveVelocity = Mathf.Lerp(moveVelocity, targetSpeed, Time.deltaTime * acceleration);
-        transform.position += new Vector3(moveDir * moveVelocity * Time.deltaTime, 0, 0);
-
-        if (visual != null) visual.localScale = new Vector3(moveDir > 0 ? 1 : -1, 1, 1);
-    }
-
-    void PlayFootstep()
-    {
+        // biết rằng có biến parivate là  currentAction-> walk, run, walk-slow hoặc idel nó trùng với tên của file anim
+        // làm sao lấy tên của file anim hiện tại để play
+        if (action != currentAction) return;
         if (footstepAudio != null && footstepAudio.clip != null)
         {
             footstepAudio.pitch = Random.Range(0.85f, 1.15f); // Làm tiếng bước chân tự nhiên
             footstepAudio.PlayOneShot(footstepAudio.clip);
         }
     }
-    void PlayFootstepOnHitGround(string clipName)
+   
+    public IEnumerator WalkToTarget(Vector3 targetPos, float speed, int finalDirection)
     {
-        // 1. Chống lặp tiếng quá dày trong thời gian cực ngắn
-        if (Time.time - lastPlayTime < minTimeBetweenSteps) return;
+        isAutoMoving = true; // Bật khóa
 
-        // 2. Kiểm tra trọng số (Weight) của Animation
-        // Nếu Clip đó đang mờ dần (Weight thấp) thì không phát âm thanh
+        // 1. Bật animation đi bộ
+        if (animator != null) animator.SetFloat("Speed", walkAnim);
+
+        // 2. Quay mặt về hướng mục tiêu
+        float direction = targetPos.x > transform.position.x ? 1 : -1;
+        if (visual != null) visual.localScale = new Vector3(direction, 1, 1);
+
+        // 3. Di chuyển
+        // 3. Di chuyển
+        while (Vector2.Distance(transform.position, targetPos) > 0.1f)
+        {
+            // Tạo một điểm đích mới có Y bằng với Y hiện tại của nhân vật
+            Vector3 flatTarget = new Vector3(targetPos.x, transform.position.y, transform.position.z);
+
+            // Di chuyển tới flatTarget thay vì targetPos gốc
+            // transform.position = Vector2.MoveTowards(transform.position, flatTarget, speed * Time.deltaTime);
+            moveVelocity = Mathf.Lerp(moveVelocity, targetSpeed, Time.deltaTime * acceleration);
+            transform.position = Vector2.MoveTowards(transform.position, flatTarget, targetSpeed * Time.deltaTime);
+            // Nếu đã đến gần X mục tiêu thì dừng vòng lặp (tránh đi quá đà)
+            if (Mathf.Abs(transform.position.x - targetPos.x) < stopThreshold) break;
+
+            yield return null;
+        }
+        //moveDir = Mathf.Lerp(moveDir, targetPos.x, Time.deltaTime * directionSmooth);
+        // 4. Đến nơi: Dừng lại và quay hướng theo ý muốn
+        // 4. ĐẾN NƠI: Dừng hẳn và thực hiện quay hướng
+        // Cập nhật lại moveVelocity về 0 để tránh bị trượt do Lerp cũ
+        moveVelocity = 0;
+
         if (animator != null)
         {
-            var stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            animator.SetFloat("Speed", idleAnim); // Chuyển về trạng thái đứng yên
 
-            // Nếu bạn dùng Blend Tree, chúng ta kiểm tra xem tốc độ có khớp không
-            // Hoặc đơn giản là kiểm tra xem Clip truyền vào có đang đóng vai trò chính không
-            float currentSpeed = animator.GetFloat("Speed");
+            // Ép Animator cập nhật ngay lập tức giá trị quay lưng
+            //animator.SetInteger("LookDirection", finalDirection);
 
-            if (clipName == "walk" && currentSpeed > 1.2f) return; // Đang chạy thì bỏ qua tiếng đi bộ
-            if (clipName == "run" && currentSpeed < 0.8f) return;  // Đang đi bộ thì bỏ qua tiếng chạy
+            // Debug thử xem giá trị thực tế trong Animator có nhảy không
+            Debug.Log("Đã set LookDirection thành: " + animator.GetInteger("LookDirection"));
+            if (visual != null)
+                visual.localScale = new Vector3(moveDir > 0 ? -1 : 1, 1, 1);
+            animator.SetInteger("LookDirection", finalDirection);
         }
 
-        // 3. Phát âm thanh
-        if (footstepAudio != null && footstepAudio.clip != null)
-        {
-            footstepAudio.pitch = Random.Range(0.9f, 1.1f);
-            footstepAudio.PlayOneShot(footstepAudio.clip);
-            lastPlayTime = Time.time;
-        }
+        isAutoMoving = false; // Mở khóa để người chơi tiếp tục điều khiển
     }
-    //footstepAudio.PlayOneShot(footstepAudio.clip);
-    //footstepAudio.pitch = Random.Range(0.85f, 1.15f); // Làm tiếng bước chân tự nhiên
-    //footstepAudio.PlayOneShot(footstepAudio.clip);
 }
