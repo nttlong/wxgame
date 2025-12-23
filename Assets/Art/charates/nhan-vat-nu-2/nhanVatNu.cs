@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class nhanVatNu : MonoBehaviour
@@ -39,11 +40,43 @@ public class nhanVatNu : MonoBehaviour
 
     private float moveVelocity = 0f;
     private float moveDir = 1f;
+    private float moveDirOld = 1f;
     private float lastPlayTime;
     public float minTimeBetweenSteps = 0.15f;
     private string currentAction = "idle";
     public bool isAutoMoving = false; //<-- player dk
     private float targetSpeed;
+
+    public float currentPosX
+    {
+        get
+        {
+            if (animator != null)
+            {
+                return animator.transform.position.x;
+            }
+            return 0f;
+        }
+       
+    }
+    
+    public int currentLookDirection
+    {
+        get
+        {
+            if (animator != null)
+            {
+                return animator.GetInteger("LookDirection");
+            }
+            return -1;
+        }
+
+        set
+        {
+            if (animator == null) return;
+            animator.SetInteger("LookDirection", value);
+        }
+    }
     void Start()
     {
         if (isAutoMoving) return; // <-- chỉ kiểm tra ở đây, trong khi hàm update kg có kiểm tra
@@ -52,12 +85,14 @@ public class nhanVatNu : MonoBehaviour
 
         // Đảm bảo AudioSource đã được gán
         if (footstepAudio == null) footstepAudio = GetComponent<AudioSource>();
+        this.currentLookDirection = -1;
         //animator.SetFloat("LookDirection", 1);
     }
     void Update()
     {
       
         if (isAutoMoving) return;
+
         // 1. Logic dừng lại khi không nhấn chuột
         if (!Input.GetMouseButton(0))
         {
@@ -67,7 +102,7 @@ public class nhanVatNu : MonoBehaviour
             nextStepTime = Time.time + stepInterval;
             return;
         }
-
+        this.currentLookDirection = 0; // chuyển sang trạng thái side view
         // 2. Logic di chuyển theo chuột
         Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouse.z = 0;
@@ -94,6 +129,7 @@ public class nhanVatNu : MonoBehaviour
 
         float targetDir = Mathf.Sign(distance);
         moveDir = Mathf.Lerp(moveDir, targetDir, Time.deltaTime * directionSmooth);
+        moveDirOld = moveDir;
 
         // 3. Chọn chế độ và tốc độ
         bool run = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
@@ -160,13 +196,23 @@ public class nhanVatNu : MonoBehaviour
     public IEnumerator WalkToTarget(Vector3 targetPos, float speed, int finalDirection)
     {
         isAutoMoving = true; // Bật khóa
-
+        targetSpeed = walkSpeed;
+        float animValue = walkAnim;
+        float currentStepInterval = walkInterval;
+        float distance = targetPos.x - transform.position.x; // evalute distance
+        float targetDir = Mathf.Sign(distance);
+        //moveDir = Mathf.Lerp(moveDir, targetDir, Time.deltaTime * directionSmooth); // calculate walk direction
+        Debug.Log("Huong nhinh moi:"+ moveDir.ToString());
+        Debug.Log("Huong nhinh cu:" + moveDirOld.ToString());
+        currentAction = "walk"; // current action is "walk" make sure correct footstep sound
         // 1. Bật animation đi bộ
-        if (animator != null) animator.SetFloat("Speed", walkAnim);
+        if (animator != null) animator.SetFloat("Speed", animValue); // tell tree blen use "walk.anim"
+
+        moveVelocity = Mathf.Lerp(moveVelocity, targetSpeed, Time.deltaTime * acceleration);
 
         // 2. Quay mặt về hướng mục tiêu
-        float direction = targetPos.x > transform.position.x ? 1 : -1;
-        if (visual != null) visual.localScale = new Vector3(direction, 1, 1);
+        moveDir = targetPos.x > transform.position.x ? 1 : -1;
+        if (visual != null) visual.localScale = new Vector3(moveDir, 1, 1);
 
         // 3. Di chuyển
         // 3. Di chuyển
@@ -192,18 +238,21 @@ public class nhanVatNu : MonoBehaviour
 
         if (animator != null)
         {
-            animator.SetFloat("Speed", idleAnim); // Chuyển về trạng thái đứng yên
+            animator.SetFloat("Speed", 0); // Chuyển về trạng thái đứng yên
 
             // Ép Animator cập nhật ngay lập tức giá trị quay lưng
             //animator.SetInteger("LookDirection", finalDirection);
-
+            this.currentLookDirection = finalDirection;
             // Debug thử xem giá trị thực tế trong Animator có nhảy không
             Debug.Log("Đã set LookDirection thành: " + animator.GetInteger("LookDirection"));
-            if (visual != null)
-                visual.localScale = new Vector3(moveDir > 0 ? -1 : 1, 1, 1);
-            animator.SetInteger("LookDirection", finalDirection);
+            //if (visual != null)
+            //    visual.localScale = new Vector3(moveDir > 0 ? -1 : 1, 1, 1);
+            
+            
         }
-
+        Debug.Log("Da dung");
+        Debug.Log("Huong nhinh moi:" + moveDir.ToString());
+        Debug.Log("Huong nhinh cu:" + moveDirOld.ToString());
         isAutoMoving = false; // Mở khóa để người chơi tiếp tục điều khiển
     }
 }
