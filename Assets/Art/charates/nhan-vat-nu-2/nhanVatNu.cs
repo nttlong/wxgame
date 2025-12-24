@@ -46,10 +46,14 @@ public class nhanVatNu : MonoBehaviour
     private string currentAction = "idle";
     public bool isAutoMoving = false; //<-- player dk
     private float targetSpeed;
-    [Header("Tay nâng cao")]
-    public float layerWeight = 0;
     public float speed = 0f;
-   
+    [Header("Tay nâng cao")]
+    
+    public Transform handSocketBack;
+    public Transform handSocketFront;
+    public Transform armLowBack;
+    public Transform armLowFront;
+    public Transform currentEquipment;
 
     public float currentPosX
     {
@@ -84,14 +88,59 @@ public class nhanVatNu : MonoBehaviour
     /// <summary>
     /// Đang giử
     /// </summary>
-    public GameObject currentEquipment;
     
-    private BoxCollider2D characterCollider;
+    
+    public BoxCollider2D characterCollider;
+    private Collider2D col;
 
+    void SetLayerWeights(float backLayerWeight, float frontLayerWeight)
+    {
 
+        if (animator == null) return;
+
+        animator.SetLayerWeight(1, backLayerWeight);
+
+        animator.SetLayerWeight(2, frontLayerWeight);
+
+    }
+    
+    void holdEquipment(bool forward)
+    {
+        if (this.currentEquipment == null) return;
+         if (forward)
+        {
+            
+            if (this.handSocketBack == null) return;
+            this.handSocketBack.parent = this.armLowBack;
+            this.currentEquipment.parent = this.handSocketBack;
+            this.currentEquipment.position =  this.handSocketBack.position;
+            Vector3 currentEuler = this.currentEquipment.rotation.eulerAngles;
+
+            // Gán lại với Z bằng 0
+            this.currentEquipment.rotation = Quaternion.Euler(currentEuler.x, currentEuler.y, 0);
+            SetLayerWeights(1f, 0f);
+
+        } else
+        {
+            if (this.handSocketFront == null) return;
+            this.handSocketFront.parent = this.armLowFront;
+            this.currentEquipment.parent = this.handSocketFront;
+            this.currentEquipment.position = this.handSocketFront.position;
+            Vector3 currentEuler = this.currentEquipment.rotation.eulerAngles;
+
+            // Gán lại với Z bằng 0
+            this.currentEquipment.rotation = Quaternion.Euler(currentEuler.x, currentEuler.y, 0);
+            SetLayerWeights(0f, 1f);
+        }
+    }
+    //void Awake()
+    //{
+    //    col = GetComponent<Collider2D>();
+    //}
     void Start()
     {
-       
+        col = characterCollider;
+        //col = GetComponent<Collider2D>();
         if (isAutoMoving) return; // <-- chỉ kiểm tra ở đây, trong khi hàm update kg có kiểm tra
         animator = GetComponentInChildren<Animator>();
         if (animator != null) visual = animator.transform;
@@ -99,14 +148,32 @@ public class nhanVatNu : MonoBehaviour
         // Đảm bảo AudioSource đã được gán
         if (footstepAudio == null) footstepAudio = GetComponent<AudioSource>();
         this.currentLookDirection = -1;
-        characterCollider = GetComponent<BoxCollider2D>();
+        //characterCollider = GetComponent<BoxCollider2D>();
         Debug.Log("start");
-        
+       
 
         //animator.SetFloat("LookDirection", 1);
     }
+    /// <summary>
+    /// Trả về true nếu chuột click đúng vào collider của nhân vật.
+    /// </summary>
+    bool IsMouseOnPlayer()
+    {
+        Vector2 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //Collider2D col = GetComponent<Collider2D>();
+
+        return col.OverlapPoint(mouseWorld);
+    }
     void Update()
     {
+        Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouse.z = 0;
+        //bool isMouseOverPlayer = characterCollider.bounds.Contains(new Vector3(mouse.x, transform.position.y, 0));
+        if (IsMouseOnPlayer())
+        {
+            animator.SetFloat("Speed", 0); // đứng yên
+            return;
+        }
         if (GameInputState.InventoryOpen)
         {
             animator.SetFloat("Speed", 0); // đứng yên
@@ -119,7 +186,7 @@ public class nhanVatNu : MonoBehaviour
         
         
         if (isAutoMoving) return;
-        animator.SetLayerWeight(1, this.layerWeight);
+        
         // 1. Logic dừng lại khi không nhấn chuột
         if (!Input.GetMouseButton(0))
         {
@@ -131,14 +198,7 @@ public class nhanVatNu : MonoBehaviour
         }
         this.currentLookDirection = 0; // chuyển sang trạng thái side view
         // 2. Logic di chuyển theo chuột
-        Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mouse.z = 0;
-        bool isMouseOverPlayer = characterCollider.bounds.Contains(new Vector3(mouse.x, transform.position.y, 0));
-        if (isMouseOverPlayer)
-        {
-            animator.SetFloat("Speed", 0); // đứng yên
-            return;
-        }
+        
         float distance = mouse.x - transform.position.x;
         
        
@@ -163,7 +223,7 @@ public class nhanVatNu : MonoBehaviour
         float targetDir = Mathf.Sign(distance);
         moveDir = Mathf.Lerp(moveDir, targetDir, Time.deltaTime * directionSmooth);
         moveDirOld = moveDir;
-
+        this.holdEquipment(moveDir>0);
         // 3. Chọn chế độ và tốc độ
         bool run = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
         bool slow = Input.GetKey(KeyCode.LeftControl);
@@ -217,7 +277,7 @@ public class nhanVatNu : MonoBehaviour
         if (this.currentEquipment != null)
         {
             // Tắt toàn bộ GameObject sẽ đảm bảo tắt cả Sprite lẫn Ánh sáng đi kèm
-            this.currentEquipment.SetActive(status);
+            this.currentEquipment.GameObject().SetActive(status);
             Debug.Log("Trạng thái mới của " + currentEquipment.name + " là: " + status);
         }
     }
