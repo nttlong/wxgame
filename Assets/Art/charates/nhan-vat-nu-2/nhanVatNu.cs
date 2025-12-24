@@ -49,6 +49,8 @@ public class nhanVatNu : MonoBehaviour
     [Header("Tay nâng cao")]
     public float layerWeight = 0;
     public float speed = 0f;
+   
+
     public float currentPosX
     {
         get
@@ -79,8 +81,17 @@ public class nhanVatNu : MonoBehaviour
             animator.SetInteger("LookDirection", value);
         }
     }
+    /// <summary>
+    /// Đang giử
+    /// </summary>
+    public GameObject currentEquipment;
+    
+    private BoxCollider2D characterCollider;
+
+
     void Start()
     {
+       
         if (isAutoMoving) return; // <-- chỉ kiểm tra ở đây, trong khi hàm update kg có kiểm tra
         animator = GetComponentInChildren<Animator>();
         if (animator != null) visual = animator.transform;
@@ -88,6 +99,10 @@ public class nhanVatNu : MonoBehaviour
         // Đảm bảo AudioSource đã được gán
         if (footstepAudio == null) footstepAudio = GetComponent<AudioSource>();
         this.currentLookDirection = -1;
+        characterCollider = GetComponent<BoxCollider2D>();
+        Debug.Log("start");
+        
+
         //animator.SetFloat("LookDirection", 1);
     }
     void Update()
@@ -97,7 +112,12 @@ public class nhanVatNu : MonoBehaviour
             animator.SetFloat("Speed", 0); // đứng yên
             return; // chặn toàn bộ input game
         }
-
+        if (this.currentAction!="back")
+        {
+            this.ToggleEquipment(true);
+        }
+        
+        
         if (isAutoMoving) return;
         animator.SetLayerWeight(1, this.layerWeight);
         // 1. Logic dừng lại khi không nhấn chuột
@@ -113,15 +133,21 @@ public class nhanVatNu : MonoBehaviour
         // 2. Logic di chuyển theo chuột
         Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouse.z = 0;
-
+        bool isMouseOverPlayer = characterCollider.bounds.Contains(new Vector3(mouse.x, transform.position.y, 0));
+        if (isMouseOverPlayer)
+        {
+            animator.SetFloat("Speed", 0); // đứng yên
+            return;
+        }
         float distance = mouse.x - transform.position.x;
-
-        // -------------------------------
-        // ⭐ DỪNG LẠI KHI GẦN TỚI VỊ TRÍ CHUỘT
-        // -------------------------------
+        
        
+            // -------------------------------
+            // ⭐ DỪNG LẠI KHI GẦN TỚI VỊ TRÍ CHUỘT
+            // -------------------------------
 
-        if (Mathf.Abs(distance) < stopThreshold)
+
+            if (Mathf.Abs(distance) < stopThreshold)
         {
             moveVelocity = Mathf.Lerp(moveVelocity, 0, Time.deltaTime * acceleration);
 
@@ -186,7 +212,15 @@ public class nhanVatNu : MonoBehaviour
             visual.localScale = new Vector3(moveDir > 0 ? 1 : -1, 1, 1);
     }
 
-   
+    void ToggleEquipment(bool status)
+    {
+        if (this.currentEquipment != null)
+        {
+            // Tắt toàn bộ GameObject sẽ đảm bảo tắt cả Sprite lẫn Ánh sáng đi kèm
+            this.currentEquipment.SetActive(status);
+            Debug.Log("Trạng thái mới của " + currentEquipment.name + " là: " + status);
+        }
+    }
 
     void PlayFootstep(string action)
     {
@@ -254,8 +288,10 @@ public class nhanVatNu : MonoBehaviour
             Debug.Log("Đã set LookDirection thành: " + animator.GetInteger("LookDirection"));
             //if (visual != null)
             //    visual.localScale = new Vector3(moveDir > 0 ? -1 : 1, 1, 1);
-            
-            
+           this.ToggleEquipment(false);
+            currentAction = "back";
+
+
         }
         Debug.Log("Da dung");
         Debug.Log("Huong nhinh moi:" + moveDir.ToString());
