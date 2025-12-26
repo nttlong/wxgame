@@ -28,6 +28,8 @@ public class BaseCharacter : MonoBehaviour
 {
     public HoldEquipmentEnum holdEquipment;
     protected Animator animator;
+    private Collider2D col;
+
     //private float beforeStopSpeed;
     protected float currentSpeed;
     public MotionEnum currentStatus;
@@ -45,11 +47,24 @@ public class BaseCharacter : MonoBehaviour
     protected virtual void Awake()
     {
         animator = GetComponentInChildren<Animator>();
+        col = GetComponentInChildren<Collider2D>();
         if (animator ==null)
         {
-            Debug.Log("animator is null");
+            Debug.LogError("animator is null");
+        }
+        if (col == null)
+        {
+            Debug.LogError("Colider 2D not setup");
         }
     }
+    public bool IsMouseOnPlayer()
+    {
+        Vector2 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //Collider2D col = GetComponent<Collider2D>();
+
+        return col.OverlapPoint(mouseWorld);
+    }
+    #region MotionV iew
     /// <summary>
     /// Show motion Walk
     /// </summary>
@@ -80,7 +95,8 @@ public class BaseCharacter : MonoBehaviour
         animator.SetInteger("LookDirection", 0);
         animator.SetFloat("Speed", currentSpeed);
         this.HoldEquipment(holdEquipment);
-    }
+    } 
+    #endregion
     /// <summary>
     /// Character look direct Camera (Character-><- camera)
     /// </summary>

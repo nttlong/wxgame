@@ -1,9 +1,10 @@
 ﻿
+using System;
 using UnityEngine;
 
 public class NhanVatNuController : BaseCharaterAutoMoveable
 {
-   
+
 
     public float walkSpeed = 2f;
     public float runSpeed = 4f;
@@ -11,30 +12,53 @@ public class NhanVatNuController : BaseCharaterAutoMoveable
     private Vector3 destination;
     private bool isMoving = false;
 
-    
+
     protected override void OnUpdate()
     {
-        if (base.IsMoving)
+        //if (base.IsMoving)
+        //{
+        //    return;
+        //}
+        HandleMouseInput(() =>
+        {
+            this.ShowMotion(this.currentStatus);
+        });
+
+
+        if (this.interactStatus == InteractStatusEnum.Moving)
         {
             return;
         }
-        HandleMouseInput();
-        MoveCharacter();
+        if (this.currentStatus != MotionEnum.Idle)
+        {
+            MoveCharacter();
+        }
+
 
         this.ShowMotion(this.currentStatus);
         this.ShowDirection(this.direction);
-       
-       
+
+
     }
     /// <summary>
     /// Bắt input từ chuột: click để di chuyển.
     /// Shift + click = chạy
     /// </summary>
-    void HandleMouseInput()
+    bool HandleMouseInput(Action onGameplyMoving)
     {
         // Người dùng đang giữ chuột trái
         if (Input.GetMouseButton(0))
         {
+            if (this.IsInInteractionObject(onGameplyMoving))
+            {
+                return true;
+            }
+            if (this.IsMouseOnPlayer())
+            {
+                return true;
+            }
+
+
             // Chuột ở đâu → đi về đó
             Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseWorld.z = transform.position.z;  // Giữ Z cố định
@@ -47,14 +71,23 @@ public class NhanVatNuController : BaseCharaterAutoMoveable
 
             // Shift → chạy
             currentStatus = Input.GetKey(KeyCode.LeftShift) ? MotionEnum.Run : MotionEnum.Walk;
+            return false;
         }
         else
         {
             // Khi thả chuột → dừng lại
-            isMoving = false;
-            currentStatus = MotionEnum.Idle;
+            //isMoving = false;
+            if (this.interactStatus == InteractStatusEnum.None || this.interactStatus == InteractStatusEnum.Wait)
+            {
+                currentStatus = MotionEnum.Idle;
+            }
+
+            return false;
         }
     }
+
+
+
     /// <summary>
     /// Di chuyển nhân vật tới destination
     /// </summary>
@@ -96,5 +129,5 @@ public class NhanVatNuController : BaseCharaterAutoMoveable
             currentStatus = MotionEnum.Idle;
         }
     }
-   
+
 }
