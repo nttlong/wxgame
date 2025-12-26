@@ -1,3 +1,4 @@
+﻿using System.Collections;
 using UnityEngine;
 
 public enum MotionEnum
@@ -16,13 +17,31 @@ public enum DirectionEnum
     BackView,
     FrontView
 }
-
+public enum HoldEquipmentEnum
+{
+    None,
+    Up,
+    Down,
+}
 
 public class BaseCharacter : MonoBehaviour
 {
+    public HoldEquipmentEnum holdEquipment;
     protected Animator animator;
     //private float beforeStopSpeed;
     protected float currentSpeed;
+    public MotionEnum currentStatus;
+    public DirectionEnum direction;
+    public int currentDirection { get; private set; }
+    [Header("Step distances per animation cycle")]
+    public float slowWalkStepDistance = 0.25f;
+    public float walkStepDistance = 0.55f;
+    public float runStepDistance = 1.1f;
+
+    [Header("Animation cycle durations (seconds per loop)")]
+    public float slowWalkCycle = 0.6f;   // thời gian 1 vòng slow walk
+    public float walkCycle = 0.45f;      // thời gian 1 vòng walk
+    public float runCycle = 0.30f;       // thời gian 1 vòng run
     protected virtual void Awake()
     {
         animator = GetComponentInChildren<Animator>();
@@ -34,30 +53,33 @@ public class BaseCharacter : MonoBehaviour
     /// <summary>
     /// Show motion Walk
     /// </summary>
-    public void ShowWalkAnim()
+    public void ShowWalk()
     {
         currentSpeed = 2f;
         animator.SetInteger("LookDirection", 0);
         animator.SetFloat("Speed", currentSpeed);
-        
+        this.HoldEquipment(holdEquipment);
+
     }
     /// <summary>
     /// Show motion Idle
     /// </summary>
-    public void ShowIdleAnim()
+    public void ShowIdle()
     {
         currentSpeed = 0;
         animator.SetInteger("LookDirection", 0);
         animator.SetFloat("Speed", currentSpeed);
+        this.HoldEquipment(holdEquipment);
     }
     /// <summary>
     /// Show motion Run
     /// </summary>
-    public void ShowIdleRun()
+    public void ShowIRun()
     {
         currentSpeed = 3;
         animator.SetInteger("LookDirection", 0);
         animator.SetFloat("Speed", currentSpeed);
+        this.HoldEquipment(holdEquipment);
     }
     /// <summary>
     /// Character look direct Camera (Character-><- camera)
@@ -81,19 +103,36 @@ public class BaseCharacter : MonoBehaviour
     }
     public void DirectionForward()
     {
+        currentDirection = 1;
         animator.SetInteger("LookDirection", 0);
-        animator.transform.localScale = new Vector3(1, 1, 1);
+        animator.transform.localScale = new Vector3(currentDirection, 1, 1);
         //currentSpeed = beforeStopSpeed;
         //animator.SetFloat("Speed", currentSpeed);
     }
     public void DirectionBackward()
     {
+        currentDirection = -1;
         animator.SetInteger("LookDirection", 0);
-        animator.transform.localScale = new Vector3(-1, 1, 1);
+        animator.transform.localScale = new Vector3(currentDirection, 1, 1);
+        
         //currentSpeed = beforeStopSpeed;
         //animator.SetFloat("Speed", currentSpeed);
     }
-
+    public void HoldEquipment(HoldEquipmentEnum holdEquipment)
+    {
+        if (holdEquipment == HoldEquipmentEnum.None) {
+            SetLayerWeights(0, 0);
+            return;
+        }
+        if (currentDirection>0)
+        {
+            SetLayerWeights(1f, 0f);
+        } else
+        {
+            SetLayerWeights(0f, 1f);
+        }
+           
+    }
 
     void SetLayerWeights(float backLayerWeight, float frontLayerWeight)
     {
@@ -103,8 +142,7 @@ public class BaseCharacter : MonoBehaviour
         animator.SetLayerWeight(1, backLayerWeight);
 
         animator.SetLayerWeight(2, frontLayerWeight);
-        Debug.Log("backLayerWeight:" + backLayerWeight.ToString());
-        Debug.Log("frontLayerWeight:" + frontLayerWeight.ToString());
+       
 
     }
     public void ShowDirection(DirectionEnum direction)
@@ -126,7 +164,7 @@ public class BaseCharacter : MonoBehaviour
         switch (status)
         {
             case MotionEnum.Idle:
-                ShowIdleAnim();
+                ShowIdle();
                 break;
 
             case MotionEnum.SlowWalk:     // slow walk
@@ -134,11 +172,11 @@ public class BaseCharacter : MonoBehaviour
                 break;
 
             case MotionEnum.Walk:         // walk
-                ShowWalkAnim();
+                ShowWalk();
                 break;
 
             case MotionEnum.Run:
-                ShowIdleRun();
+                ShowIRun();
                 break;
 
            
@@ -152,10 +190,13 @@ public class BaseCharacter : MonoBehaviour
 
     protected virtual void OnUpdate() { }
 
+    
+    
     void Update()
     {
-        Debug.Log("BaseCharacter Update");
+        
         OnUpdate();
-        SetLayerWeights(0f, 1f);
+        
     }
+    
 }
