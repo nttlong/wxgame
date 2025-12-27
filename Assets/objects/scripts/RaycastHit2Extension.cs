@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public static class RaycastHit2Extension
@@ -35,5 +37,23 @@ public static class RaycastHit2Extension
             prevPoint = newPoint;
         }
     }
+
+    public static InteractRegion GetInteractRegion(this RaycastHit2D hit)
+    {
+        var interacRegions = hit.collider.GetComponentsInParent<InteractRegion>();
+        if (interacRegions != null)
+        {
+            foreach (var cmp in interacRegions)
+            {
+                if (cmp.Colider == hit.collider)
+                {
+                   return cmp;
+                }
+            }
+
+        }
+        return null;
+    }
+
 }
 

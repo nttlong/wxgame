@@ -131,9 +131,19 @@ public class BaseCharaterAutoMoveable : BaseCharacter
         if (hit.collider != null)
         {
             var interact = hit.collider.GetComponent<IInteractable>();
+            var interacRegions = hit.collider.GetComponentsInParent<InteractRegion>();
+            
             if (interact==null)
             {
-                return true;
+                var interactRegion=hit.GetInteractRegion();
+                if (interactRegion != null)
+                {
+                    interact = interactRegion;
+                } else
+                {
+                    return true;
+                }
+                   
             }
             if (hit.collider.gameObject == this.currentInteractObject && this.interactStatus==InteractStatusEnum.Moving)
             {
@@ -148,9 +158,12 @@ public class BaseCharaterAutoMoveable : BaseCharacter
             StartMoveRoutine(this.transform, hit.GetCenterHitPoint(), () =>
             {
                 this.currentInteractObject=null;
-               
-                
-                interact.Interact(this);
+
+
+                interact.Interact(this, () =>
+                {
+
+                });
 
             },onGameplyMoving);
             return true;

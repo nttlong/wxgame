@@ -30,10 +30,11 @@ public class Door : MonoBehaviour, IInteractable
                 break;
         }
     }
-    public void Interact(BaseCharacter baseCharacter)
+    public void Interact(BaseCharacter baseCharacter,Action AfterInteract)
     {
         StopCharacterStopMotion(baseCharacter);
         Debug.Log("Interact with :" + transform.name);
+        AfterInteract();
     }
 
     public void Awake()
