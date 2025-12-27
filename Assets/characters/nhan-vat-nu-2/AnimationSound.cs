@@ -24,20 +24,12 @@ public class AnimationSound : MonoBehaviour
 
         if (footstepAudio == null) return;
         if (character == null) return;
-        //if (footstepAudio.isPlaying)
-        //{
-        //    return;
-        //}
+        
         if (character.currentStatus == motion)
         {
             footstepAudio.pitch = Random.Range(0.85f, 1.15f); // Làm tiếng bước chân tự nhiên
             footstepAudio.PlayOneShot(footstepAudio.clip);
         }
-        //}
-        //Debug.Log("On hit ground :" + motion.ToString() + ";" + chracter.currentStatus.ToString());
         
-
-
-        //Debug.Log(chracter.currentStatus);
     }
 }

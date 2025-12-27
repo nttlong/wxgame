@@ -12,7 +12,13 @@ public class NhanVatNuController : BaseCharaterAutoMoveable
     private Vector3 destination;
     private bool isMoving = false;
 
+    
 
+    public MotionEnum defaultStatus;
+    private void Start()
+    {
+       
+    }
     protected override void OnUpdate()
     {
         //if (base.IsMoving)
@@ -71,6 +77,7 @@ public class NhanVatNuController : BaseCharaterAutoMoveable
 
             // Shift → chạy
             currentStatus = Input.GetKey(KeyCode.LeftShift) ? MotionEnum.Run : MotionEnum.Walk;
+            Debug.Log("current status:"+currentStatus.ToString());
             return false;
         }
         else
@@ -79,7 +86,12 @@ public class NhanVatNuController : BaseCharaterAutoMoveable
             //isMoving = false;
             if (this.interactStatus == InteractStatusEnum.None || this.interactStatus == InteractStatusEnum.Wait)
             {
-                currentStatus = MotionEnum.Idle;
+                if (currentStatus != MotionEnum.SitDown)
+                {
+                    currentStatus = defaultStatus;
+                }
+                
+                Debug.Log("current status:" + currentStatus.ToString());
             }
 
             return false;

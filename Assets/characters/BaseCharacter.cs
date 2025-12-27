@@ -1,12 +1,15 @@
 ﻿using System.Collections;
+using Unity.Properties;
 using UnityEngine;
 
 public enum MotionEnum
 {
+    None,
     Idle,
     SlowWalk,
     Walk,
     Run,
+    SitDown
    
 }
 
@@ -32,7 +35,21 @@ public class BaseCharacter : MonoBehaviour
 
     //private float beforeStopSpeed;
     protected float currentSpeed;
-    public MotionEnum currentStatus;
+    private MotionEnum _currentStatus;
+    public MotionEnum currentStatus
+    {
+        get
+        {
+            return _currentStatus;
+        } set
+        {
+            if(value==MotionEnum.Idle)
+            {
+                _currentStatus = value;
+            }
+            _currentStatus = value;
+        }
+    }
     public DirectionEnum direction;
     public int currentDirection { get; private set; }
     [Header("Step distances per animation cycle")]
@@ -44,6 +61,8 @@ public class BaseCharacter : MonoBehaviour
     public float slowWalkCycle = 0.6f;   // thời gian 1 vòng slow walk
     public float walkCycle = 0.45f;      // thời gian 1 vòng walk
     public float runCycle = 0.30f;       // thời gian 1 vòng run
+   
+
     protected virtual void Awake()
     {
         animator = GetComponentInChildren<Animator>();
@@ -73,6 +92,16 @@ public class BaseCharacter : MonoBehaviour
         currentSpeed = 2f;
         animator.SetInteger("LookDirection", 0);
         animator.SetFloat("Speed", currentSpeed);
+        animator.SetBool("Sit", false);
+        this.HoldEquipment(holdEquipment);
+
+    }
+    public void ShowSitDown()
+    {
+        currentSpeed = 4f;
+        animator.SetInteger("LookDirection", 0);
+        animator.SetFloat("Speed", currentSpeed);
+        animator.SetBool("Sit", true);
         this.HoldEquipment(holdEquipment);
 
     }
@@ -84,6 +113,7 @@ public class BaseCharacter : MonoBehaviour
         currentSpeed = 0;
         animator.SetInteger("LookDirection", 0);
         animator.SetFloat("Speed", currentSpeed);
+        animator.SetBool("Sit", false);
         this.HoldEquipment(holdEquipment);
     }
     /// <summary>
@@ -94,6 +124,7 @@ public class BaseCharacter : MonoBehaviour
         currentSpeed = 3;
         animator.SetInteger("LookDirection", 0);
         animator.SetFloat("Speed", currentSpeed);
+        animator.SetBool("Sit", false);
         this.HoldEquipment(holdEquipment);
     } 
     #endregion
@@ -106,6 +137,7 @@ public class BaseCharacter : MonoBehaviour
         currentSpeed = 0;
         //animator.SetFloat("Speed", currentSpeed);
         animator.SetInteger("LookDirection", 2);
+        
     }
     /// <summary>
     /// Character look same  Camera direction (<- Character->camera)
@@ -194,6 +226,9 @@ public class BaseCharacter : MonoBehaviour
             case MotionEnum.Run:
                 ShowIRun();
                 break;
+            case MotionEnum.SitDown:
+                ShowSitDown();
+                break;
 
            
 
@@ -202,7 +237,7 @@ public class BaseCharacter : MonoBehaviour
                 break;
         }
     }
-    protected virtual void Start() { }
+    
 
     protected virtual void OnUpdate() { }
 

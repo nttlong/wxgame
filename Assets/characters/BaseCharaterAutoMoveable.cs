@@ -79,9 +79,10 @@ public class BaseCharaterAutoMoveable : BaseCharacter
 
 
         // Đến nơi
-        currentStatus = MotionEnum.Idle;
+        //currentStatus = MotionEnum.Idle;
         //ShowMotion(currentStatus);
         this.interactStatus = InteractStatusEnum.Wait;
+      
         OnFinish();
     }
     public void StartMoveRoutine(Transform currentTragetObject, Vector3 targetPos,Action OnFinish,Action OnMoving)
@@ -155,6 +156,7 @@ public class BaseCharaterAutoMoveable : BaseCharacter
             // Debug.Log("di chuyển đến vị trí click thực sự");
 
             hit.DrawDebugCircleAtCenterPoint(0.5f, Color.red);
+            this.currentStatus = MotionEnum.Idle;
             StartMoveRoutine(this.transform, hit.GetCenterHitPoint(), () =>
             {
                 this.currentInteractObject=null;
