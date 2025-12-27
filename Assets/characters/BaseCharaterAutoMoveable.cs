@@ -65,10 +65,13 @@ public class BaseCharaterAutoMoveable : BaseCharacter
         Debug.Log("MovetoTarget with currentStatus=" + currentStatus.ToString());
         this.interactStatus = InteractStatusEnum.Moving;
         // Di chuyển cho đến khi tới nơi
-        while (Vector3.Distance(transform.position, targetPos) > 0.05f)
+        var posX = new Vector2(transform.position.x, 0);
+        var targetPosX = new Vector2(targetPos.x, 0);
+        while (Vector2.Distance(posX, targetPosX) > 0.05f)
         {
             Vector3 moveDir = (targetPos - transform.position).normalized;
             transform.position += moveDir * speed * Time.deltaTime;
+            posX = new Vector2(transform.position.x, 0);
             this.interactStatus = InteractStatusEnum.Moving;
             OnMoving();
             yield return null;
@@ -127,6 +130,11 @@ public class BaseCharaterAutoMoveable : BaseCharacter
         }
         if (hit.collider != null)
         {
+            var interact = hit.collider.GetComponent<IInteractable>();
+            if (interact==null)
+            {
+                return true;
+            }
             if (hit.collider.gameObject == this.currentInteractObject && this.interactStatus==InteractStatusEnum.Moving)
             {
                 return true;
@@ -136,10 +144,14 @@ public class BaseCharaterAutoMoveable : BaseCharacter
             Debug.Log("Collider hit: " + hit.collider.name);
             // Debug.Log("di chuyển đến vị trí click thực sự");
 
-           
-            StartMoveRoutine(this.transform, hit.point, () =>
+            hit.DrawDebugCircleAtCenterPoint(0.5f, Color.red);
+            StartMoveRoutine(this.transform, hit.GetCenterHitPoint(), () =>
             {
                 this.currentInteractObject=null;
+               
+                
+                interact.Interact(this);
+
             },onGameplyMoving);
             return true;
         } else

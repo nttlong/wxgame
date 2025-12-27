@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "E:\\unitty-data\\wdgame\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{ADE2638F-3718-3061-C484-6A37A2FFA207}|Assembly-CSharp.csproj|E:\\unitty-data\\wdgame\\assets\\characters\\nhan-vat-nu-2\\nhanvatnucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ADE2638F-3718-3061-C484-6A37A2FFA207}|Assembly-CSharp.csproj|solutionrelative:assets\\characters\\nhan-vat-nu-2\\nhanvatnucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ADE2638F-3718-3061-C484-6A37A2FFA207}|Assembly-CSharp.csproj|e:\\unitty-data\\wdgame\\assets\\objects\\scripts\\raycasthit2dtetension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ADE2638F-3718-3061-C484-6A37A2FFA207}|Assembly-CSharp.csproj|solutionrelative:assets\\objects\\scripts\\raycasthit2dtetension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{ADE2638F-3718-3061-C484-6A37A2FFA207}|Assembly-CSharp.csproj|e:\\unitty-data\\wdgame\\assets\\characters\\basecharaterautomoveable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -13,6 +13,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{ADE2638F-3718-3061-C484-6A37A2FFA207}|Assembly-CSharp.csproj|E:\\unitty-data\\wdgame\\assets\\characters\\basecharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ADE2638F-3718-3061-C484-6A37A2FFA207}|Assembly-CSharp.csproj|solutionrelative:assets\\characters\\basecharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ADE2638F-3718-3061-C484-6A37A2FFA207}|Assembly-CSharp.csproj|E:\\unitty-data\\wdgame\\assets\\characters\\nhan-vat-nu-2\\nhanvatnucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ADE2638F-3718-3061-C484-6A37A2FFA207}|Assembly-CSharp.csproj|solutionrelative:assets\\characters\\nhan-vat-nu-2\\nhanvatnucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\unitty-data\\wdgame\\Assets\\objects\\IInteractable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\objects\\IInteractable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\unitty-data\\wdgame\\Assets\\objects\\scripts\\PickupItem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -33,10 +41,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{ADE2638F-3718-3061-C484-6A37A2FFA207}|Assembly-CSharp.csproj|E:\\unitty-data\\wdgame\\assets\\characters\\basecharatercaninteract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ADE2638F-3718-3061-C484-6A37A2FFA207}|Assembly-CSharp.csproj|solutionrelative:assets\\characters\\basecharatercaninteract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ADE2638F-3718-3061-C484-6A37A2FFA207}|Assembly-CSharp.csproj|E:\\unitty-data\\wdgame\\assets\\scripts\\doorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ADE2638F-3718-3061-C484-6A37A2FFA207}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\doorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\unitty-data\\wdgame\\Library\\PackageCache\\com.unity.2d.animation@9.2.2\\Runtime\\SpriteSkin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -93,10 +97,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\unitty-data\\wdgame\\Assets\\objects\\scripts\\DoorController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\objects\\scripts\\DoorController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\unitty-data\\wdgame\\Assets\\objects\\scripts\\IInteractable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\objects\\scripts\\IInteractable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -106,8 +106,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RaycastHit2DTetension.cs",
+              "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\objects\\scripts\\RaycastHit2DTetension.cs",
+              "RelativeDocumentMoniker": "Assets\\objects\\scripts\\RaycastHit2DTetension.cs",
+              "ToolTip": "E:\\unitty-data\\wdgame\\Assets\\objects\\scripts\\RaycastHit2DTetension.cs",
+              "RelativeToolTip": "Assets\\objects\\scripts\\RaycastHit2DTetension.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-27T06:45:18.814Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -116,26 +129,14 @@
               "RelativeDocumentMoniker": "Assets\\characters\\BaseCharaterAutoMoveable.cs",
               "ToolTip": "E:\\unitty-data\\wdgame\\Assets\\characters\\BaseCharaterAutoMoveable.cs",
               "RelativeToolTip": "Assets\\characters\\BaseCharaterAutoMoveable.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAD4v0gAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAH4AAAAAAAAAAAD4v5cAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-26T13:20:48.645Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "BaseCharaterCanInteract.cs",
-              "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\characters\\BaseCharaterCanInteract.cs",
-              "RelativeDocumentMoniker": "Assets\\characters\\BaseCharaterCanInteract.cs",
-              "ToolTip": "E:\\unitty-data\\wdgame\\Assets\\characters\\BaseCharaterCanInteract.cs",
-              "RelativeToolTip": "Assets\\characters\\BaseCharaterCanInteract.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T12:48:58.44Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "SpriteSkin.cs",
               "DocumentMoniker": "E:\\unitty-data\\wdgame\\Library\\PackageCache\\com.unity.2d.animation@9.2.2\\Runtime\\SpriteSkin.cs",
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.2d.animation@9.2.2\\Runtime\\SpriteSkin.cs",
@@ -143,36 +144,37 @@
               "RelativeToolTip": "Library\\PackageCache\\com.unity.2d.animation@9.2.2\\Runtime\\SpriteSkin.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T05:36:33.281Z"
+              "WhenOpened": "2025-12-26T05:36:33.281Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 13,
+              "Title": "BoneRenderer.cs",
+              "DocumentMoniker": "E:\\unitty-data\\wdgame\\Library\\PackageCache\\com.unity.animation.rigging@1.2.1\\Runtime\\Utils\\BoneRenderer.cs",
+              "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.animation.rigging@1.2.1\\Runtime\\Utils\\BoneRenderer.cs",
+              "ToolTip": "E:\\unitty-data\\wdgame\\Library\\PackageCache\\com.unity.animation.rigging@1.2.1\\Runtime\\Utils\\BoneRenderer.cs",
+              "RelativeToolTip": "Library\\PackageCache\\com.unity.animation.rigging@1.2.1\\Runtime\\Utils\\BoneRenderer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-25T07:22:55.884Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "NhanVatNuController.cs",
               "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\characters\\nhan-vat-nu-2\\NhanVatNuController.cs",
               "RelativeDocumentMoniker": "Assets\\characters\\nhan-vat-nu-2\\NhanVatNuController.cs",
               "ToolTip": "E:\\unitty-data\\wdgame\\Assets\\characters\\nhan-vat-nu-2\\NhanVatNuController.cs",
               "RelativeToolTip": "Assets\\characters\\nhan-vat-nu-2\\NhanVatNuController.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAMwBgAAAALAAAAAAAAAA==",
+              "ViewState": "AgIAACoAAAAAAAAAAAAtwDMAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T12:46:00.405Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-26T12:46:00.405Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "DoorController.cs",
-              "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\Scripts\\DoorController.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\DoorController.cs",
-              "ToolTip": "E:\\unitty-data\\wdgame\\Assets\\Scripts\\DoorController.cs",
-              "RelativeToolTip": "Assets\\Scripts\\DoorController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-24T08:40:04.688Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "PlayerInteraction.cs",
               "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\objects\\scripts\\PlayerInteraction.cs",
               "RelativeDocumentMoniker": "Assets\\objects\\scripts\\PlayerInteraction.cs",
@@ -189,14 +191,36 @@
               "RelativeDocumentMoniker": "Assets\\characters\\BaseCharacter.cs",
               "ToolTip": "E:\\unitty-data\\wdgame\\Assets\\characters\\BaseCharacter.cs",
               "RelativeToolTip": "Assets\\characters\\BaseCharacter.cs",
-              "ViewState": "AgIAAMAAAAAAAAAAAAAlwNcAAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAGAAAAAAAAAAAAD4v3AAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-25T13:35:08.466Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-25T13:35:08.466Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 9,
+              "Title": "BaseCharaterCanInteract.cs",
+              "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\characters\\BaseCharaterCanInteract.cs",
+              "RelativeDocumentMoniker": "Assets\\characters\\BaseCharaterCanInteract.cs",
+              "ToolTip": "E:\\unitty-data\\wdgame\\Assets\\characters\\BaseCharaterCanInteract.cs",
+              "RelativeToolTip": "Assets\\characters\\BaseCharaterCanInteract.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-26T12:48:58.44Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IInteractable.cs",
+              "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\objects\\IInteractable.cs",
+              "RelativeDocumentMoniker": "Assets\\objects\\IInteractable.cs",
+              "ToolTip": "E:\\unitty-data\\wdgame\\Assets\\objects\\IInteractable.cs",
+              "RelativeToolTip": "Assets\\objects\\IInteractable.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-27T06:11:22.479Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "PickupItem.cs",
               "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\objects\\scripts\\PickupItem.cs",
               "RelativeDocumentMoniker": "Assets\\objects\\scripts\\PickupItem.cs",
@@ -207,7 +231,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "InteractableBase.cs",
               "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\objects\\scripts\\InteractableBase.cs",
               "RelativeDocumentMoniker": "Assets\\objects\\scripts\\InteractableBase.cs",
@@ -218,7 +242,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "InteractWithAutoMovaleObject.cs",
               "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\objects\\InteractWithAutoMovaleObject.cs",
               "RelativeDocumentMoniker": "Assets\\objects\\InteractWithAutoMovaleObject.cs",
@@ -229,7 +253,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "nhanVatNu.cs",
               "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\characters\\nhan-vat-nu-2\\nhanVatNu.cs",
               "RelativeDocumentMoniker": "Assets\\characters\\nhan-vat-nu-2\\nhanVatNu.cs",
@@ -241,7 +265,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "DoorController.cs",
               "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\objects\\scripts\\DoorController.cs",
               "RelativeDocumentMoniker": "Assets\\objects\\scripts\\DoorController.cs",
@@ -253,19 +277,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "IInteractable.cs",
-              "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\objects\\scripts\\IInteractable.cs",
-              "RelativeDocumentMoniker": "Assets\\objects\\scripts\\IInteractable.cs",
-              "ToolTip": "E:\\unitty-data\\wdgame\\Assets\\objects\\scripts\\IInteractable.cs",
-              "RelativeToolTip": "Assets\\objects\\scripts\\IInteractable.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-25T13:57:56.77Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "Cinemachine Parallax.cs",
               "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\Scripts\\Cinemachine Parallax.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Cinemachine Parallax.cs",
@@ -277,7 +289,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "IInteractable.cs",
               "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\Art\\objects\\scripts\\IInteractable.cs",
               "RelativeDocumentMoniker": "Assets\\Art\\objects\\scripts\\IInteractable.cs",
@@ -289,7 +301,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "nhanVatNu.cs",
               "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\Art\\charates\\nhan-vat-nu-2\\nhanVatNu.cs",
               "RelativeDocumentMoniker": "Assets\\Art\\charates\\nhan-vat-nu-2\\nhanVatNu.cs",
@@ -300,7 +312,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "TestClick.cs",
               "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\Art\\objects\\debug\\TestClick.cs",
               "RelativeDocumentMoniker": "Assets\\Art\\objects\\debug\\TestClick.cs",
@@ -313,18 +325,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 12,
-              "Title": "BoneRenderer.cs",
-              "DocumentMoniker": "E:\\unitty-data\\wdgame\\Library\\PackageCache\\com.unity.animation.rigging@1.2.1\\Runtime\\Utils\\BoneRenderer.cs",
-              "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.animation.rigging@1.2.1\\Runtime\\Utils\\BoneRenderer.cs",
-              "ToolTip": "E:\\unitty-data\\wdgame\\Library\\PackageCache\\com.unity.animation.rigging@1.2.1\\Runtime\\Utils\\BoneRenderer.cs",
-              "RelativeToolTip": "Library\\PackageCache\\com.unity.animation.rigging@1.2.1\\Runtime\\Utils\\BoneRenderer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-25T07:22:55.884Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
               "Title": "Test.cs",
               "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\Test.cs",
               "RelativeDocumentMoniker": "Assets\\Test.cs",
@@ -336,7 +336,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "PickupItem.cs",
               "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\Art\\objects\\scripts\\PickupItem.cs",
               "RelativeDocumentMoniker": "Assets\\Art\\objects\\scripts\\PickupItem.cs",
@@ -348,7 +348,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "DoorController.cs",
               "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\Art\\objects\\scripts\\DoorController.cs",
               "RelativeDocumentMoniker": "Assets\\Art\\objects\\scripts\\DoorController.cs",
@@ -360,7 +360,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "PlayerInteraction.cs",
               "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\Art\\objects\\scripts\\PlayerInteraction.cs",
               "RelativeDocumentMoniker": "Assets\\Art\\objects\\scripts\\PlayerInteraction.cs",
@@ -372,7 +372,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "PlayerController.cs",
               "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\Art\\charates\\main\\script\\PlayerController.cs",
               "RelativeDocumentMoniker": "Assets\\Art\\charates\\main\\script\\PlayerController.cs",
@@ -380,12 +380,11 @@
               "RelativeToolTip": "Assets\\Art\\charates\\main\\script\\PlayerController.cs",
               "ViewState": "AgIAADYAAAAAAAAAAAAowBUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-24T11:28:48.414Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-24T11:28:48.414Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "InteractableBase.cs",
               "DocumentMoniker": "E:\\unitty-data\\wdgame\\Assets\\Art\\objects\\scripts\\InteractableBase.cs",
               "RelativeDocumentMoniker": "Assets\\Art\\objects\\scripts\\InteractableBase.cs",
